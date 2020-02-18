@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_music/views/home.dart';
 
 class Choice {
   const Choice({this.title, this.icon, this.component});
@@ -24,10 +25,11 @@ class IndexPage extends StatelessWidget {
           centerTitle: true,
           elevation: 0, // appBar的阴影，若没设置则默认为4
           title: TabBar(
-              // unselectedLabelColor: const Color(0xFFA1A1A1),
-
-              indicatorWeight: 0,
+              indicator: const BoxDecoration(),
+              unselectedLabelColor: const Color(0xFFA1A1A1),
               isScrollable: true,
+              labelStyle: new TextStyle(fontSize: 22.0),
+              unselectedLabelStyle: new TextStyle(fontSize: 16.0),
               tabs: choices.map((Choice choice) {
                 return Tab(text: choice.title);
               }).toList()),
@@ -36,6 +38,18 @@ class IndexPage extends StatelessWidget {
               onPressed: () {},
               icon: Icon(Icons.search),
             )
+          ],
+        ),
+        // drawer: ,
+        body: Column(
+          children: <Widget>[
+            Expanded(
+                flex: 1,
+                child: TabBarView(
+                  children: choices.map((Choice choice) {
+                    return ChoiceCard(choice: choice);
+                  }).toList(),
+                ))
           ],
         ),
       ),
@@ -51,7 +65,7 @@ class ChoiceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (choice.component) {
       case 'home':
-        return null;
+        return HomePage();
         break;
       case 'find':
         break;
