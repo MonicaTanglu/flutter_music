@@ -7,6 +7,8 @@ import 'package:flutter_music/router/index.dart';
 import 'package:flutter_music/views/index.dart';
 
 // void main() => runApp(MyApp());
+
+// 初始化应用状态
 final store = Store<PlayState>(reducer, initialState: PlayState.initState());
 void main() {
   SystemChrome.setPreferredOrientations(

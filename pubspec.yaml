@@ -28,6 +28,8 @@ dependencies:
   weui: 0.0.5
   dio: 2.2.2
   path_provider: ^0.5.0
+  shared_preferences: 0.5.4+5
+  cached_network_image: ^0.8.0 
 
 dev_dependencies:
   flutter_test:
@@ -46,7 +48,12 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
+  assets:
+    - lib/assets/images/circle_bg.png
+    - lib/assets/images/changzhen.png
+    - lib/assets/images/tj.png
+    - lib/assets/images/logo.jpg
+    - lib/assets/images/bg.jpg
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
 
@@ -73,5 +80,9 @@ flutter:
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
+  fonts:
+    - family: myIcon
+      fonts:
+        - asset: lib/assets/icon/iconfont.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
