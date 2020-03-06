@@ -30,6 +30,8 @@ dependencies:
   path_provider: ^0.5.0
   shared_preferences: 0.5.4+5
   cached_network_image: ^0.8.0 
+  flustars: '>=0.2.6 <2.0.0'
+  audioplayers: ^0.10.1
 
 dev_dependencies:
   flutter_test:

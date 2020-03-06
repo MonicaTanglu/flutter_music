@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_music/components/play_bar.dart';
+// import 'package:flutter_music/components/play_bar.dart';
 import 'package:flutter_music/util/theme.dart';
 import 'package:weui/weui.dart';
-import 'package:flutter_music/components/image_block.dart';
+// import 'package:flutter_music/components/image_block.dart';
 import 'package:flutter_music/util/request.dart';
+import 'package:flutter_music/components/song_recomend.dart';
 /***
  * 利用sharedPreferences轻量级的存储类来保存键值对信息
  */
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
-class SongList extends StatefulWidget {
+class SongListTwo extends StatefulWidget {
   @override
-  SongListState createState() => SongListState();
+  SongListTwoState createState() => SongListTwoState();
 }
 
-class SongListState extends State {
+class SongListTwoState extends State {
   var songList = [];
   double start = 0;
   double end = 0;
@@ -22,17 +23,15 @@ class SongListState extends State {
 
   getSongList(BuildContext context) async {
     try {
-      DioUtil.getInstance().get('/recommend/resource', {'limit': 6}, (data) {
+      DioUtil.getInstance().get('/top/song', {'limit': 6, 'type': 0}, (data) {
         setState(() {
-          songList = data['recommend'];
+          songList = data['data'];
           // this.songList = data['result'];
         });
       }, (error) {
         WeToast.fail(context)(message: error['message']);
       });
     } catch (err) {
-      print('getSongList');
-      print(err);
       WeToast.fail(context)(message: '未知错误');
     }
   }
@@ -43,18 +42,29 @@ class SongListState extends State {
     controller.dispose();
   }
 
-  Widget itemBuilder(int index) {
-    final item = songList[index];
-    // InkWell实现水波纹点击效果
-    return InkWell(
-      onTap: () async {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString('playListId', item['id'].toString());
-        Navigator.of(context).pushNamed('/playlist');
-      },
-      child: new Padding(
-          padding: EdgeInsets.only(top: 0, bottom: 16, left: 8, right: 8),
-          child: ImageBlock(item)),
+  // Widget itemBuilder(int index) {
+  //   final item = songList[index];
+  //   // InkWell实现水波纹点击效果
+  //   return InkWell(
+  //     onTap: () async {
+  //       SharedPreferences prefs = await SharedPreferences.getInstance();
+  //       prefs.setString('playListId', item['id'].toString());
+  //       Navigator.of(context).pushNamed('/playlist');
+  //     },
+  //     child: new Padding(
+  //         padding: EdgeInsets.only(top: 0, bottom: 16, left: 8, right: 8),
+  //         child: ImageBlock(item)),
+  //   );
+  // }
+
+  Widget getSongListWidget(int index) {
+    List<Widget> children = [];
+    int start = index;
+    for (; index < start + 3; index++) {
+      children.add(SongRecoment(songList[index]));
+    }
+    return Column(
+      children: children,
     );
   }
 
@@ -69,13 +79,6 @@ class SongListState extends State {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> children = [];
-    for (int i = 0; i < 6; i++) {
-      children.add(Padding(
-        padding: EdgeInsets.only(top: 0, bottom: 16, left: 8, right: 8),
-        child: ImageBlock(songList[i]),
-      ));
-    }
     return songList.length > 0
         ? new Container(
             child: new Column(
@@ -90,7 +93,7 @@ class SongListState extends State {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  '推荐歌单',
+                                  '风格推荐',
                                   style: TextStyle(
                                       color: MyColor.lightFont,
                                       fontSize: MyFontSize.smallSize),
@@ -99,7 +102,7 @@ class SongListState extends State {
                                   padding: EdgeInsets.only(top: 4),
                                 ),
                                 Text(
-                                  '为你精挑细选',
+                                  '欲罢不能的电音旋律',
                                   style: TextStyle(
                                       fontSize: 16.0,
                                       color: MyColor.deepFont,
@@ -115,14 +118,21 @@ class SongListState extends State {
                               borderRadius: BorderRadius.circular(20),
                               border: Border.all(color: Color(0xffF0F0F0))),
                           child: GestureDetector(
-                            onTap: () {},
-                            child: Text(
-                              '查看更多',
-                              style: TextStyle(
-                                  color: MyColor.commonFont,
-                                  fontSize: MyFontSize.smallSize),
-                            ),
-                          ),
+                              onTap: () {},
+                              child: Row(
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.play_arrow,
+                                    size: MyFontSize.smallSize,
+                                  ),
+                                  Text(
+                                    '查看更多',
+                                    style: TextStyle(
+                                        color: MyColor.commonFont,
+                                        fontSize: MyFontSize.smallSize),
+                                  ),
+                                ],
+                              )),
                         ),
                       ]),
                 ),
@@ -161,7 +171,11 @@ class SongListState extends State {
                         controller: controller,
                         scrollDirection: Axis.horizontal,
                         child: Row(
-                          children: children,
+                          children: [
+                            getSongListWidget(0),
+                            getSongListWidget(3),
+                            Padding(padding: EdgeInsets.only(right: 20))
+                          ],
                         ),
                       )),
                 ),

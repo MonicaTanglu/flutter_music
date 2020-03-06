@@ -5,6 +5,8 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_music/router/index.dart';
 import 'package:flutter_music/views/index.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_music/views/login-1.dart';
 
 // void main() => runApp(MyApp());
 
@@ -28,11 +30,23 @@ class MyApp extends StatefulWidget {
 
 class AppState extends State {
   bool isDefaultTheme = true;
+  String userId = '';
 
   void toggleTheme() {
     this.setState(() {
       isDefaultTheme = !isDefaultTheme;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loginState(context);
+  }
+
+  loginState(BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    userId = prefs.get('userId');
   }
 
   @override

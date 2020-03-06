@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_music/views/home.dart';
 import 'package:flutter_music/views/find.dart';
 import 'package:flutter_music/components/drawer_content.dart';
+import 'package:flutter_music/components/play_bar.dart';
 
 class Choice {
   const Choice({this.title, this.icon, this.component});
@@ -86,10 +87,10 @@ class _IndexPage extends State with SingleTickerProviderStateMixin {
                 child: TabBarView(
                   controller: _tabController,
                   children: choices.map((Choice choice) {
-                    print(choice.component);
                     return ChoiceCard(choice: choice);
                   }).toList(),
-                ))
+                )),
+            // PlayBar()
           ],
         ),
       ),
@@ -105,15 +106,12 @@ class ChoiceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (choice.component) {
       case 'home':
-        print('home component');
         return HomePage();
         break;
       case 'find':
-        print('find component');
         return FindPage();
         break;
       case 'cloud_valige':
-        print('cloud_valige component');
         return null;
         break;
       default:

@@ -150,16 +150,61 @@ class DrawerContentState extends State {
                         child: Row(
                           children: <Widget>[
                             Expanded(
-                                flex: 1,
-                                child: Column(
-                                  children: <Widget>[
-                                    Icon(Icons.mail_outline,
-                                        color: Theme.of(context).accentColor,
-                                        size: 28),
-                                    box,
-                                    Text('我的消息', style: fontStyle)
-                                  ],
-                                )),
+                              flex: 1,
+                              child: Stack(
+                                  textDirection: TextDirection.ltr,
+                                  children: [
+                                    Positioned(
+                                      right: 10,
+                                      top: 0,
+                                      child: Container(
+                                          padding: EdgeInsets.only(
+                                              top: 2,
+                                              bottom: 1,
+                                              left: 4,
+                                              right: 4),
+                                          decoration: BoxDecoration(
+                                              color: Colors.red,
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          child: Text(
+                                            '13',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10),
+                                          )),
+                                    ),
+                                    Container(
+                                      child: GestureDetector(
+                                        child: Column(
+                                          children: <Widget>[
+                                            Icon(Icons.mail_outline,
+                                                color: Theme.of(context)
+                                                    .accentColor,
+                                                size: 28),
+                                            box,
+                                            Text('我的消息', style: fontStyle),
+                                          ],
+                                        ),
+                                        onTap: () {
+                                          Navigator.pushNamed(
+                                              context, '/information');
+                                        },
+                                      ),
+                                    )
+                                  ]),
+
+                              // Stack(
+                              //   alignment: Alignment.center,
+                              //   textDirection: TextDirection.ltr,
+                              //   children: <Widget>[
+                              //     Positioned(
+                              //       child: ,
+                              //     )
+                              //   ],
+                              // )
+                              // ],
+                            ),
                             Expanded(
                               flex: 1,
                               child: Column(children: <Widget>[

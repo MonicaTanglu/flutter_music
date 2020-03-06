@@ -6,6 +6,7 @@ import 'package:weui/weui.dart';
 import 'package:flutter_music/components/box.dart';
 import 'package:flutter_music/components/home_swiper.dart';
 import 'package:flutter_music/components/song_list.dart';
+import 'package:flutter_music/components/song_list2.dart';
 
 class FindPage extends StatefulWidget {
   @override
@@ -173,7 +174,8 @@ class FindPageState extends State with AutomaticKeepAliveClientMixin {
               ),
             ),
             SongList(),
-            _buildNewSong(),
+            SongListTwo(),
+            // _buildNewSong(),
           ],
         ),
       ),

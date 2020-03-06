@@ -31,11 +31,12 @@ class PlayState {
 
 PlayState reducer(PlayState state, action) {
   if (action['type'] == 'changePlay') {
-    state.playState['play'] = action['payload'];
+    state.playState['play'] = action['playload'];
     return PlayState(state.playState);
   }
   if (action['type'] == 'setPlayingData') {
-    state.playState['playingData'].addEntries(action['payload'].entries);
+    //addEntries 合并两个map，如果key有重复，被合并的map的value覆盖前者
+    state.playState['playingData'].addEntries(action['playload'].entries);
     return PlayState(state.playState);
   }
   if (action['type'] == 'setCommentData') {
@@ -43,7 +44,7 @@ PlayState reducer(PlayState state, action) {
     return PlayState(state.playState);
   }
   if (action['type'] == 'setHome') {
-    state.playState['home'].addEntries(action['payload'].entries);
+    state.playState['home'].addEntries(action['playload'].entries);
     return PlayState(state.playState);
   }
   return state;

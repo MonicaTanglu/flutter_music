@@ -44,7 +44,7 @@ class DioUtil {
       }
     } catch (e) {
       // errorCallBack(e);
-      throw e;
+      // throw e;
     }
   }
 

@@ -73,24 +73,6 @@ class LoginPageState extends State {
                         }
                         Navigator.pushNamed(context, '/twoLogin',
                             arguments: {'phoneNumber': _phoneController.text});
-                        // final response = await DioUtil.getInstance().post(
-                        //     "/login/cellphone?phone=$username&password=$password",
-                        //     {'username': username, 'password': password});
-                        // setState(() {
-                        //   _isLoading = false;
-                        // });
-                        // final data = response.data;
-                        // if (data['code'] == 200) {
-                        //   SharedPreferences prefs =
-                        //       await SharedPreferences.getInstance();
-                        //   data['profile'].forEach((String key, value) {
-                        //     prefs.setString(key, value.toString());
-                        //   });
-                        //   getSongList();
-                        //   Navigator.pop(context);
-                        // } else {
-                        //   WeToast.info(context)(response.data['message']);
-                        // }
                       }),
                     )
                   ],

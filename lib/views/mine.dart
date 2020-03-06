@@ -9,12 +9,9 @@ class MinePage extends StatefulWidget {
 
 class _MinePage extends State with SingleTickerProviderStateMixin {
   var userInfo = {};
-  var userId = null;
-  TabController _tabController;
 
   loginState(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    userId = prefs.get('userId');
     setState(() {
       userInfo['avatarUrl'] = prefs.get('avatarUrl');
       userInfo['nickname'] = prefs.get('nickname');
@@ -25,7 +22,6 @@ class _MinePage extends State with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     loginState(context);
-    _tabController = new TabController(length: 2, vsync: this);
   }
 
   @override
