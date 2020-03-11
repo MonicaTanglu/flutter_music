@@ -3,6 +3,7 @@ import 'package:flutter_music/views/home.dart';
 import 'package:flutter_music/views/find.dart';
 import 'package:flutter_music/components/drawer_content.dart';
 import 'package:flutter_music/components/play_bar.dart';
+import 'package:flutter_music/views/village.dart';
 
 class Choice {
   const Choice({this.title, this.icon, this.component});
@@ -112,7 +113,8 @@ class ChoiceCard extends StatelessWidget {
         return FindPage();
         break;
       case 'cloud_valige':
-        return null;
+        // return null;
+        return VillagePage();
         break;
       default:
         return HomePage();

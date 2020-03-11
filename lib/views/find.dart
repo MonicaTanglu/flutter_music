@@ -149,13 +149,8 @@ class FindPageState extends State with AutomaticKeepAliveClientMixin {
                                 icon: item['icon'],
                                 onPressed: () {
                                   switch (item['name']) {
-                                    case '每日推荐':
-                                      Navigator.of(context)
-                                          .pushNamed('/dayPush');
-                                      break;
-                                    case '歌单':
-                                      Navigator.of(context)
-                                          .pushNamed('/square');
+                                    case '排行榜':
+                                      Navigator.of(context).pushNamed('/rank');
                                       break;
                                     default:
                                       break;

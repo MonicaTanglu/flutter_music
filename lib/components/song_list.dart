@@ -15,7 +15,7 @@ class SongList extends StatefulWidget {
 }
 
 class SongListState extends State {
-  var songList = [];
+  List songList = [];
   double start = 0;
   double end = 0;
   ScrollController controller = new ScrollController();
@@ -72,9 +72,18 @@ class SongListState extends State {
     List<Widget> children = [];
     for (int i = 0; i < 6; i++) {
       children.add(Padding(
-        padding: EdgeInsets.only(top: 0, bottom: 16, left: 8, right: 8),
-        child: ImageBlock(songList[i]),
-      ));
+          padding: EdgeInsets.only(top: 0, bottom: 16, left: 8, right: 8),
+          child: InkWell(
+            onTap: () async {
+              // print(songList[i]);
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.setString('songSheetId', songList[i]['id'].toString());
+              Navigator.pushNamed(context, '/songlist');
+            },
+            child: songList.length > 0 && [i] != null
+                ? ImageBlock(songList[i])
+                : null,
+          )));
     }
     return songList.length > 0
         ? new Container(

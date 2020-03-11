@@ -23,6 +23,8 @@ class _SongListPage extends State with AutomaticKeepAliveClientMixin {
   var listInfo = {};
   String title = '歌单';
   bool isLoading = false;
+  bool tabNameChanged = false;
+  ScrollController _controller = new ScrollController();
   @override
   bool get wantKeepAlive => true;
 
@@ -30,6 +32,20 @@ class _SongListPage extends State with AutomaticKeepAliveClientMixin {
   void initState() {
     super.initState();
     getPlaylist(context);
+    _controller.addListener(() {
+      if (_controller.offset > 200 && listInfo['name'] != null) {
+        if (tabNameChanged) return;
+        tabNameChanged = true;
+        setState(() {
+          title = listInfo['name'];
+        });
+      } else {
+        setState(() {
+          title = '歌单';
+        });
+        tabNameChanged = false;
+      }
+    });
   }
 
   getPlaylist(BuildContext context) async {
@@ -46,7 +62,7 @@ class _SongListPage extends State with AutomaticKeepAliveClientMixin {
         setState(() {
           listInfo = data['playlist'];
           playLists = listInfo['tracks'];
-          title = data['playlist']['name'];
+          // title = data['playlist']['name'];
         });
       } else {
         WeToast.info(context)(data['message']);
@@ -95,7 +111,7 @@ class _SongListPage extends State with AutomaticKeepAliveClientMixin {
                     children: <Widget>[
                       Container(
                         child: Text(
-                          title,
+                          listInfo['name'] != null ? listInfo['name'] : title,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           style: TextStyle(color: Colors.white, fontSize: 16.0),
@@ -103,7 +119,8 @@ class _SongListPage extends State with AutomaticKeepAliveClientMixin {
                       ),
                       box,
                       Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             ClipRRect(
                               borderRadius: BorderRadius.circular(50),
@@ -257,14 +274,14 @@ class _SongListPage extends State with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    print(listInfo['coverImgUrl']);
+    super.build(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
         children: <Widget>[
           Expanded(
             child: CustomScrollView(
+              controller: _controller,
               slivers: <Widget>[
                 SliverAppBar(
                   elevation: 0,

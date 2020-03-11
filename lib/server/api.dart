@@ -24,4 +24,37 @@ class Api {
       cb(data);
     });
   }
+
+  static getTopListDetail(params, cb) {
+    DioUtil.getInstance().getNoQuery('/toplist/detail', (data) {
+      cb(data);
+    }, (err) {
+      cb(err);
+    });
+  }
+
+  static getHotWallList(params, cb) {
+    DioUtil.getInstance().get('/comment/hotwall/list', params, (data) {
+      cb(data);
+    }, (data) {
+      cb(data);
+    });
+  }
+
+  static getTopArtists(params, cb) {
+    DioUtil.getInstance().get('/top/artists', params, (data) {
+      cb(data);
+    }, (data) {
+      cb(data);
+    });
+  }
+
+  static getTopPlayList(params, cb) {
+    // /top/playlist
+    DioUtil.getInstance().get('/event', params, (data) {
+      cb(data);
+    }, (data) {
+      cb(data);
+    });
+  }
 }

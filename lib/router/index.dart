@@ -7,9 +7,11 @@ import 'package:flutter_music/views/agreement.dart';
 import 'package:flutter_music/views/login-2.dart';
 import 'package:flutter_music/views/person.dart';
 import 'package:flutter_music/views/player.dart';
+import 'package:flutter_music/views/rank.dart';
 import 'package:flutter_music/views/setting.dart';
 import 'package:flutter_music/views/mine.dart';
 import 'package:flutter_music/views/song_list.dart';
+// import 'package:flutter_music/views/village.dart';
 
 final routes = <String, WidgetBuilder>{
   '/login': (context) => LoginPage(),
@@ -22,5 +24,7 @@ final routes = <String, WidgetBuilder>{
   '/information': (context) => InformationPage(),
   '/index': (context) => IndexPage(),
   '/songlist': (context) => SongListPage(),
-  '/player': (context) => PlayerPage()
+  '/player': (context) => PlayerPage(),
+  '/rank': (context) => RankPage(),
+  // '/village': (context) => VillagePage()
 };

@@ -199,7 +199,9 @@ class HomePageState extends State with AutomaticKeepAliveClientMixin {
                                   height: 60,
                                   width: 60,
                                   fit: BoxFit.cover,
-                                  image: NetworkImage(userInfo['avatarUrl']),
+                                  image: userInfo['avatarUrl'] != null
+                                      ? NetworkImage(userInfo['avatarUrl'])
+                                      : null,
                                 ),
                               ),
                               Container(

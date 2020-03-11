@@ -44,7 +44,23 @@ class DioUtil {
       }
     } catch (e) {
       // errorCallBack(e);
-      // throw e;
+      throw e;
+    }
+  }
+
+  getNoQuery(
+      String url, Function successCallBack, Function errorCallBack) async {
+    try {
+      Response response = await dio.get(url).catchError(errorCallBack);
+      final data = response.data;
+      if (data['code'] == 200) {
+        successCallBack(data);
+      } else {
+        errorCallBack(data);
+      }
+    } catch (e) {
+      // errorCallBack(e);
+      throw e;
     }
   }
 

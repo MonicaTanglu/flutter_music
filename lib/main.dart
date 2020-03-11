@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_music/redux/index.dart';
+// import 'package:flutter_music/views/find.dart';
+import 'package:flutter_music/views/login.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_music/router/index.dart';
 import 'package:flutter_music/views/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_music/views/login-1.dart';
+// import 'package:flutter_music/views/login-1.dart';
 
 // void main() => runApp(MyApp());
 
 // 初始化应用状态
 final store = Store<PlayState>(reducer, initialState: PlayState.initState());
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
     runApp(MyApp(store));
