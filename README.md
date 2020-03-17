@@ -41,10 +41,10 @@
 ```
 ### 三、使用自定义`icon`
 1. 从`iconfont`下载文件，并将`iconfont.ttf`文件放到某个目录下。
-2. 在`pubspec.yaml`配置fonts:
+2. 在`pubspec.yaml`配置fonts:  
 ![img](./images/icon.png)
 3. 新建一个`myIcon.dart`文件,注册icon(其中的0xe600,是在unicode下将&#替换为0)
-![img](./images/icon2.png)
+![img](./images/icon2.png)  
 ```dart
 import 'package:flutter/cupertino.dart';
 class MyIcons {
@@ -69,7 +69,8 @@ Padding(
 
 
 ### 四、常用`Widget`
-- 基础组件`Text`,`Image`,`Icon`,`Switch`,`Checkbox`,`TextField`,`LinearProgressIndicator`,`CircularProgressIndicator`，`Offstage`(通过offstage字段控制child是否显示)
+- 基础组件`Text`,`Image`,`Icon`,`Switch`,`Checkbox`,`TextField`,`LinearProgressIndicator`,`CircularProgressIndicator`，`Offstage`(通过offstage字段控制child是否显示)   
+
 ![img](./images/offstage.png)
 - 布局类`Row`,`Column`,`Flex`(类似Row),`Wrap`(从左到右排列，超过宽度自动换行),`Stack`（层叠布局），`Positioned`(通常和Stack同时使用)）
 - - 状态管理(页面更新渲染)
