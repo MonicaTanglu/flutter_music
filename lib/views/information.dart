@@ -18,9 +18,11 @@ class _InformationPage extends State with SingleTickerProviderStateMixin {
   getMsgPrivate() {
     Api.getMsgPrivate({'offset': 0}, (data) {
       if (data['code'] == 200) {
-        msgs = data['msgs'];
-        itemCount = msgs.length;
-        newMsgCount = data['newMsgCount'];
+        setState(() {
+          msgs = data['msgs'];
+          itemCount = msgs.length;
+          newMsgCount = data['newMsgCount'];
+        });
       }
     });
   }

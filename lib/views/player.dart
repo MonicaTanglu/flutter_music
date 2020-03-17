@@ -452,6 +452,10 @@ class _PlayerPage extends State with TickerProviderStateMixin {
                                 ),
                               )
                             ],
+                          ),
+                          Container(
+                            height: 20,
+                            child: null,
                           )
                         ],
                       )

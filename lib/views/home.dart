@@ -469,7 +469,7 @@ class HomePageState extends State with AutomaticKeepAliveClientMixin {
                                 Container(
                                     width: 100,
                                     child: Text(
-                                      '视频：香水有毒（Vocal：妖扬、黄因）',
+                                      '视频：哈哈哈哈哈哈哈哈哈哈（Vocal：妖扬、黄因）',
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(

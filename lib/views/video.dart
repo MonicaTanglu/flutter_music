@@ -11,7 +11,8 @@ class VideoPage extends StatefulWidget {
 }
 
 //with AutomaticKeepAliveClientMixin
-class _VideoPage extends State with TickerProviderStateMixin {
+class _VideoPage extends State
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   TabController _tabController;
   // @override
   // bool get wantKeepAlive => true;
@@ -58,6 +59,9 @@ class _VideoPage extends State with TickerProviderStateMixin {
     getTags();
     _tabController = new TabController(length: 10, vsync: this);
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   Widget itemBuilder(BuildContext context, int i) {
     Map data = videos[i]['data'];

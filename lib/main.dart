@@ -49,7 +49,9 @@ class AppState extends State {
 
   loginState(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    userId = prefs.get('userId');
+    setState(() {
+      userId = prefs.getString("userId");
+    });
   }
 
   @override
@@ -63,6 +65,6 @@ class AppState extends State {
             routes: routes,
             theme: new ThemeData(
                 primaryColor: Colors.white, accentColor: Colors.red),
-            home: userId == null ? LoginPage() : IndexPage()));
+            home: userId == '' || userId == null ? LoginPage() : IndexPage()));
   }
 }
