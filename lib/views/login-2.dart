@@ -88,8 +88,8 @@ class LoginTwoPage extends State {
                           _isLoading = false;
                         });
                         final data = response.data;
-                        print(data);
-                        print('personalInfo');
+                        // print(data);
+                        // print('personalInfo');
                         if (data['code'] == 200) {
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();

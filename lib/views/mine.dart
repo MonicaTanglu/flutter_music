@@ -7,7 +7,8 @@ class MinePage extends StatefulWidget {
   _MinePage createState() => new _MinePage();
 }
 
-class _MinePage extends State with SingleTickerProviderStateMixin {
+class _MinePage extends State
+    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   var userInfo = {};
 
   loginState(BuildContext context) async {
@@ -25,7 +26,11 @@ class _MinePage extends State with SingleTickerProviderStateMixin {
   }
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body:

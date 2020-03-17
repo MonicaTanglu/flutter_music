@@ -11,7 +11,8 @@ class VillagePage extends StatefulWidget {
   _VillagePage createState() => _VillagePage();
 }
 
-class _VillagePage extends State with SingleTickerProviderStateMixin {
+class _VillagePage extends State
+    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   TabController _tabController;
   ScrollController _controller = ScrollController();
   DateTime time = DateTime.now();
@@ -30,23 +31,17 @@ class _VillagePage extends State with SingleTickerProviderStateMixin {
     _tabController = TabController(length: 2, vsync: this);
     getPlayList();
     _controller.addListener(() {
-      // print({
-      //   'type': 'scroll',
-      //   'offset': _controller.offset,
-      //   'maxScroll': _controller.position.maxScrollExtent,
-      //   'pixels': _controller.position.pixels,
-      //   'isLoading': _isLoading,
-      //   'isNoMoreData': this.isNoMoreData
-      // });
       if (_controller.position.pixels == _controller.position.maxScrollExtent &&
           !_isLoading &&
           this.isNoMoreData) {
         // pageNow++;
         getPlayList();
-        print('in scroll');
       }
     });
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   String getUpperMonth(int month) {
     String monthStr = 'Jan';
@@ -97,20 +92,14 @@ class _VillagePage extends State with SingleTickerProviderStateMixin {
     setState(() {
       _isLoading = true;
     });
-    // int offset = (pageNow - 1) * limit;
     Api.getTopPlayList({'pagesize': limit, 'lasttime': lasttime}, (data) {
       if (data['code'] == 200) {
-        // list = data['event'];
-        // lasttime = data['lasttime'];
-        // isNoMoreData = data['more'];
         setState(() {
           list.addAll(data['event']);
           lasttime = data['lasttime'];
           isNoMoreData = data['more'];
         });
-        print({'length': list.length});
       }
-      // getWrapWidgets();
       setState(() {
         _isLoading = false;
       });
@@ -118,27 +107,22 @@ class _VillagePage extends State with SingleTickerProviderStateMixin {
   }
 
   getWrapWidgets(int i) {
-    // List<Widget> children = [];
-    // for (int i = 0; i < list.length; i++) {
     Map<String, dynamic> jsonList = jsonDecode(list[i]['json']);
 
     Widget child = Container(
       width: width2,
-      // margin: i % 2 == 0
-      //     ? EdgeInsets.only(right: 4, bottom: 8)
-      //     : EdgeInsets.only(left: 4, bottom: 8),
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(4), bottomRight: Radius.circular(4))),
-      child: Column(children: [
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Container(
           child: ClipRRect(
             borderRadius: BorderRadius.circular(4),
             child: CachedNetworkImage(
               imageUrl: list[i]['pics'].length > 0
                   ? list[i]['pics'][0]['squareUrl']
-                  : list[i]['user']['avatarUrl'],
+                  : 'https://p1.music.126.net/tkdsPjCEurW-Zj6Mey_LeA==/109951164780845597.jpg',
               width: width2,
               placeholder: (context, url) => CircularProgressIndicator(),
             ),
@@ -147,12 +131,12 @@ class _VillagePage extends State with SingleTickerProviderStateMixin {
         Container(
             padding: EdgeInsets.all(8),
             child: Text(
-              jsonList['msg'],
+              jsonList['msg'] == null ? '出错了' : jsonList['msg'],
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
             )),
         Padding(
-          padding: EdgeInsets.only(bottom: 10, top: 4, left: 8, right: 8),
+          padding: EdgeInsets.only(bottom: 10, top: 0, left: 8, right: 8),
           child: Row(children: [
             Expanded(
               child: Row(children: [
@@ -184,17 +168,13 @@ class _VillagePage extends State with SingleTickerProviderStateMixin {
         )
       ]),
     );
-    //   children.add(child);
-    // }
     return child;
-    // setState(() {
-    //   children = children;
-    // });
   }
 
   @override
   Widget build(BuildContext context) {
     // print('x');
+    super.build(context);
     width2 = (MediaQuery.of(context).size.width - 40) / 2;
     return Scaffold(
       appBar: PreferredSize(

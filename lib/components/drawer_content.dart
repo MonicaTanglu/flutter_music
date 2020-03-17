@@ -369,9 +369,18 @@ class DrawerContentState extends State {
                           size: 18,
                           color: rightColor,
                         ),
-                        Padding(
-                            padding: EdgeInsets.only(left: 6),
-                            child: Text('退出'))
+                        InkWell(
+                          child: Padding(
+                              padding: EdgeInsets.only(left: 6),
+                              child: Text('退出')),
+                          onTap: () async {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setString('userId', null);
+                            Navigator.pushNamed(context, '/login');
+                            // var userId = prefs.get('userId');
+                          },
+                        )
                       ],
                     ),
                   ))

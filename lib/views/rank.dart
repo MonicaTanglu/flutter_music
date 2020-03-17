@@ -234,7 +234,9 @@ class _RankPage extends State with AutomaticKeepAliveClientMixin {
                       ],
                     ),
                   )
-                : LoadingDialog()
+                : LoadingDialog(
+                    text: '加载中...',
+                  )
             // : showDialog(
             //     context: context,
             //     barrierDismissible: false,

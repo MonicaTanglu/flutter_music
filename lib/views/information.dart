@@ -151,7 +151,9 @@ class _InformationPage extends State with SingleTickerProviderStateMixin {
                 ),
                 // ),
                 newMsgCount == 0
-                    ? null
+                    ? Container(
+                        child: null,
+                      )
                     : Positioned(
                         right: -16,
                         top: 16,

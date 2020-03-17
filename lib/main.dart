@@ -58,9 +58,11 @@ class AppState extends State {
         store: store,
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
+            // onGenerateRoute: (RouteSettings settings) { // 路由拦截
+            // },
             routes: routes,
             theme: new ThemeData(
                 primaryColor: Colors.white, accentColor: Colors.red),
-            home: IndexPage()));
+            home: userId == null ? LoginPage() : IndexPage()));
   }
 }

@@ -57,4 +57,44 @@ class Api {
       cb(data);
     });
   }
+
+  static getVideoTags(cb) {
+    DioUtil.getInstance().getNoQuery('/video/group/list', (data) {
+      cb(data);
+    }, (data) {
+      cb(data);
+    });
+  }
+
+  static getVideoList(params, cb) {
+    DioUtil.getInstance().get('/video/group', params, (data) {
+      cb(data);
+    }, (data) {
+      cb(data);
+    });
+  }
+
+  static getVideoDetail(params, cb) {
+    DioUtil.getInstance().get('/video/detail', params, (data) {
+      cb(data);
+    }, (data) {
+      cb(data);
+    });
+  }
+
+  static getRelativeVideo(params, cb) {
+    DioUtil.getInstance().get('/related/allvideo', params, (data) {
+      cb(data);
+    }, (data) {
+      cb(data);
+    });
+  }
+
+  static getVideoUrl(params, cb) {
+    DioUtil.getInstance().get('/video/url', params, (data) {
+      cb(data);
+    }, (data) {
+      cb(data);
+    });
+  }
 }

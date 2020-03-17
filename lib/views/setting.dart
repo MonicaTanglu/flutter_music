@@ -18,8 +18,7 @@ class _SettingPage extends State {
           elevation: 0,
         ),
         backgroundColor: Color(0xffF7F7F7),
-        body: SingleChildScrollView(
-            child: Column(children: [
+        body: ListView(children: [
           Container(
             margin: EdgeInsets.only(top: 4),
             padding: EdgeInsets.only(left: 16, right: 16, top: 6, bottom: 6),
@@ -280,6 +279,6 @@ class _SettingPage extends State {
               style: TextStyle(color: MyColor.dangerColor),
             ),
           )
-        ])));
+        ]));
   }
 }

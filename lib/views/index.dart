@@ -4,6 +4,7 @@ import 'package:flutter_music/views/find.dart';
 import 'package:flutter_music/components/drawer_content.dart';
 import 'package:flutter_music/components/play_bar.dart';
 import 'package:flutter_music/views/village.dart';
+import 'package:flutter_music/views/video.dart';
 
 class Choice {
   const Choice({this.title, this.icon, this.component});
@@ -16,7 +17,8 @@ const List<Choice> choices = const <Choice>[
   const Choice(title: '我的', icon: Icons.directions_car, component: 'home'),
   const Choice(title: '发现', icon: Icons.directions_bike, component: 'find'),
   const Choice(
-      title: '云村', icon: Icons.directions_boat, component: 'cloud_valige')
+      title: '云村', icon: Icons.directions_boat, component: 'cloud_valige'),
+  const Choice(title: '视频', component: 'video')
 ];
 
 class IndexPage extends StatefulWidget {
@@ -57,12 +59,19 @@ class _IndexPage extends State with SingleTickerProviderStateMixin {
             controller: _tabController,
             indicator: const BoxDecoration(),
             unselectedLabelColor: const Color(0xFFA1A1A1),
-            isScrollable: true,
-            labelStyle: new TextStyle(fontSize: 22.0),
+            isScrollable: false,
+            indicatorPadding: EdgeInsets.zero,
+            labelPadding: EdgeInsets.zero,
+            labelStyle: new TextStyle(fontSize: 20.0),
             labelColor: tabSelected == 0 ? Colors.white : Color(0xFF555555),
             unselectedLabelStyle: new TextStyle(fontSize: 16.0),
             tabs: choices.map((Choice choice) {
-              return Tab(child: Text(choice.title));
+              return Tab(
+                  child: Text(
+                choice.title,
+                maxLines: 1,
+                overflow: TextOverflow.visible,
+              ));
             }).toList(),
             onTap: (int index) {
               setState(() {
@@ -116,6 +125,8 @@ class ChoiceCard extends StatelessWidget {
         // return null;
         return VillagePage();
         break;
+      case 'video':
+        return VideoPage();
       default:
         return HomePage();
         break;
