@@ -45,7 +45,7 @@
 ![img](./images/icon.png)
 3. 新建一个`myIcon.dart`文件,注册icon(其中的0xe600,是在unicode下将&#替换为0)
 ![img](./images/icon2.png)  
-```dart
+```
 import 'package:flutter/cupertino.dart';
 class MyIcons {
   static const IconData weChat =
