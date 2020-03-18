@@ -1,5 +1,6 @@
 # 仿网易云音乐app分享
-> 后端接口 https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=neteasecloudmusicapi
+> 后端接口 https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=neteasecloudmusicapi  
+> flutter文档 https://flutterchina.club/get-started/install/ https://book.flutterchina.club/
 
 
 ### 一、 app名称及图标的修改

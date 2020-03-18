@@ -8,8 +8,7 @@ import 'package:redux/redux.dart';
 import 'package:flutter_music/router/index.dart';
 import 'package:flutter_music/views/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:weui/weui.dart';
-import 'package:flutter_music/components/toast.dart';
+import 'package:weui/weui.dart';
 // import 'package:flutter_music/views/login-1.dart';
 
 // void main() => runApp(MyApp());
@@ -74,6 +73,10 @@ class AppState extends State {
                   DateTime.now().difference(lastPopTime) >
                       Duration(seconds: 2)) {
                 lastPopTime = DateTime.now();
+                WeToast.info(context)(Text(
+                  '再按一次退出~',
+                  style: TextStyle(color: Colors.white),
+                ));
                 // 这里弹窗禁止退出
                 // Toast.toast(context,
                 //     msg: '再按一次退出~', showTime: 3000, position: 'top');
