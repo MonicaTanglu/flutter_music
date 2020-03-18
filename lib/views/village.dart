@@ -94,6 +94,7 @@ class _VillagePage extends State
     });
     Api.getTopPlayList({'pagesize': limit, 'lasttime': lasttime}, (data) {
       if (data['code'] == 200) {
+        if (!mounted) return;
         setState(() {
           list.addAll(data['event']);
           lasttime = data['lasttime'];

@@ -72,7 +72,7 @@ Padding(
 - 基础组件`Text`,`Image`,`Icon`,`Switch`,`Checkbox`,`TextField`,`LinearProgressIndicator`,`CircularProgressIndicator`，`Offstage`(通过offstage字段控制child是否显示)   
 
 ![img](./images/offstage.png)
-- 布局类`Row`,`Column`,`Flex`(类似Row),`Wrap`(从左到右排列，超过宽度自动换行),`Stack`（层叠布局），`Positioned`(通常和Stack同时使用)）
+- 布局类`Row`,`Column`,`Flex`(类似Row),`Expanded`,`Wrap`(从左到右排列，超过宽度自动换行),`Stack`（层叠布局），`Positioned`(通常和Stack同时使用)）
 - - 状态管理(页面更新渲染)
 - 容器组件 `Padding`,`Transform`(变形，变化角度),`Container`，`Scaffold`（页面整体结构），`AppBar`,`TabBar`,`TabBarView`,`Drawer`,`ClipRRect`
 - 滚动组件 `SingleChildScrollView`(只能接收一个组件)，`ListView`，`GridView`,`CustomScrollView`(可以包含多种滚动)

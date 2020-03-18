@@ -18,7 +18,7 @@ class _VideoDetail extends State {
   bool isLoading = false;
   List relVideos = [];
   String videoUrl = '';
-  Map detail;
+  Map detail = null;
   VideoPlayerController videoPlayerController;
   ChewieController chewieController;
   @override
@@ -29,7 +29,14 @@ class _VideoDetail extends State {
   getVideoDetail(id) {
     Api.getVideoDetail({'id': id}, (data) {
       if (data['code'] == 200) {
-        detail = data['data'];
+        setState(() {
+          detail = data['data'];
+        });
+      }
+      if (videoUrl != '') {
+        setState(() {
+          isLoading = false;
+        });
       }
     });
   }
@@ -58,9 +65,11 @@ class _VideoDetail extends State {
           looping: false,
         );
       }
-      setState(() {
-        isLoading = false;
-      });
+      if (detail != null) {
+        setState(() {
+          isLoading = false;
+        });
+      }
     });
   }
 
@@ -73,18 +82,21 @@ class _VideoDetail extends State {
 
   Widget getTagsWidget(tags) {
     List<Widget> children = [];
-    for (int i = 0; i < tags.length; i++) {
-      children.add(Container(
-        padding: EdgeInsets.all(4),
-        margin: EdgeInsets.only(left: 8),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20), color: Color(0xffF3F3F3)),
-        child: Text(
-          tags[i]['name'],
-          style: TextStyle(
-              fontSize: MyFontSize.smallSize, color: MyColor.lightFont),
-        ),
-      ));
+    if (tags != null) {
+      for (int i = 0; i < tags.length; i++) {
+        children.add(Container(
+          padding: EdgeInsets.all(4),
+          margin: EdgeInsets.only(left: 8),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Color(0xffF3F3F3)),
+          child: Text(
+            tags[i]['name'],
+            style: TextStyle(
+                fontSize: MyFontSize.smallSize, color: MyColor.lightFont),
+          ),
+        ));
+      }
     }
     return Container(
       height: 24,
@@ -103,11 +115,14 @@ class _VideoDetail extends State {
       id = args['videoId'];
       getVideoUrl(id);
       getVideoDetail(id);
-      getRelativeVideos(id);
+      // getRelativeVideos(id);
     }
-    List videoTags = detail['videoGroup'];
+    // List videoTags = detail['videoGroup'];
     return Scaffold(
-        body: isLoading && relVideos.length == 0 && videoUrl == ''
+        body: isLoading &&
+                relVideos.length == 0 &&
+                videoUrl == '' &&
+                detail == null
             ? LoadingDialog(
                 text: '加载中...',
               )
@@ -128,7 +143,9 @@ class _VideoDetail extends State {
                           children: <Widget>[
                             Expanded(
                                 child: Text(
-                              detail['title'],
+                              detail != null && detail['title'] != null
+                                  ? detail['title']
+                                  : '',
                               style: TextStyle(fontWeight: FontWeight.w500),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
