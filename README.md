@@ -6,7 +6,7 @@
 ### 一、 app名称及图标的修改
 - 修改app名称
 在项目下找到`Android`目录，（app -> src -> main -> AndroidManifest.xml），打开`AndroidManifest.xml`文件，找到`application`节点，修改`label`
-![img](./images/1.png)
+![img](/images/1.png)
 - 修改app图标
 在`app -> src -> main -> res`中`mipmap`开头目录中存放不同图标的大小。如果更换图标名称，则也需要在`AndroidManifest.xml`中修改`android:icon`对应的名字  
 1. mipmap-hdpi - 72*72
@@ -43,9 +43,9 @@
 ### 三、使用自定义`icon`
 1. 从`iconfont`下载文件，并将`iconfont.ttf`文件放到某个目录下。
 2. 在`pubspec.yaml`配置fonts:  
-![img](./images/icon.png)
+![img](/images/icon.png)
 3. 新建一个`myIcon.dart`文件,注册icon(其中的0xe600,是在unicode下将&#替换为0)
-![img](./images/icon2.png)  
+![img](/images/icon2.png)  
 ```
 import 'package:flutter/cupertino.dart';
 class MyIcons {
@@ -72,7 +72,7 @@ Padding(
 ### 四、常用`Widget`
 - 基础组件`Text`,`Image`,`Icon`,`Switch`,`Checkbox`,`TextField`,`LinearProgressIndicator`,`CircularProgressIndicator`，`Offstage`(通过offstage字段控制child是否显示)   
 
-![img](./images/offstage.png)
+![img](/images/offstage.png)
 - 布局类`Row`,`Column`,`Flex`(类似Row),`Expanded`,`Wrap`(从左到右排列，超过宽度自动换行),`Stack`（层叠布局），`Positioned`(通常和Stack同时使用)）
 - - 状态管理(页面更新渲染)
 - 容器组件 `Padding`,`Transform`(变形，变化角度),`Container`，`Scaffold`（页面整体结构），`AppBar`,`TabBar`,`TabBarView`,`Drawer`,`ClipRRect`
